@@ -78,6 +78,10 @@ export const plugins = new Elysia({ name: "plugins" })
     // Unexpected errors
     set.status = 500;
     return fail(
-      env.isProd ? "Internal server error" : (error.message ?? "Unknown error")
+      env.isProd
+        ? "Internal server error"
+        : error instanceof Error
+          ? error.message
+          : "Unknown error"
     );
   });

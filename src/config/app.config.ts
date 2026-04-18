@@ -32,6 +32,12 @@ export const CACHE_TTL = {
   /** Comic detail page (10 minutes) */
   COMIC_DETAIL: 10 * 60 * 1000,
 
+  /** Recently-updated (pustaka) list (3 minutes — live feed) */
+  PUSTAKA_LIST: 3 * 60 * 1000,
+
+  /** Chapter reader page (15 minutes — images don't change after upload) */
+  CHAPTER_DETAIL: 15 * 60 * 1000,
+
   /** Default TTL when not specified (5 minutes) */
   DEFAULT: 5 * 60 * 1000,
 } as const;

@@ -24,7 +24,8 @@ export const comicModule = new Elysia({ prefix: "/comic" })
     "/",
     async ({ query }) => {
       const page = query.page ?? 1;
-      const result = await getComicList(page);
+      const tipe = query.tipe ?? "";
+      const result = await getComicList(page, tipe);
       return paginated(result.comics, result.currentPage, result.totalPages);
     },
     {

@@ -62,6 +62,9 @@ export const ComicListQuerySchema = t.Object({
   page: t.Optional(
     t.Numeric({ minimum: 1, default: 1 })
   ),
+  tipe: t.Optional(
+    t.String({ minLength: 1, default: "" })
+  ),
 });
 
 export type ComicListQuery = Static<typeof ComicListQuerySchema>;

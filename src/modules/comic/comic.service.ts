@@ -24,16 +24,17 @@ import type { ComicDetail } from "./comic.model";
  * @returns Parsed comic list with pagination metadata
  */
 export async function getComicList(
-  page: number = 1
+  page: number = 1,
+  tipe: string = ""
 ): Promise<ComicListParseResult> {
-  const cacheKey = `comic:list:${page}`;
+  const cacheKey = `comic:list:${page}:${tipe}`;
 
   // Check cache
   const cached = cache.get<ComicListParseResult>(cacheKey);
   if (cached) return cached;
 
   // Fetch & parse
-  const url = buildComicListUrl(page);
+  const url = buildComicListUrl(page, tipe);
   const html = await fetchPage(url);
   const result = parseComicList(html);
 
