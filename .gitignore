@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-bun.lockb
 
 # Environment variables
 .env
@@ -37,3 +36,13 @@ desktop.ini
 
 # Bun
 .bun/
+bun.lockb
+
+# Drizzle — generated migration SQL files are committed, but local metadata is fine to ignore
+# drizzle/ ← intentionally NOT ignored — migrations should be tracked in git
+
+# Drizzle Studio local config (auto-generated, not needed in repo)
+.drizzle/
+
+# Scripts temp / scratch output
+scripts/*.log

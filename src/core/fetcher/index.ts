@@ -62,15 +62,28 @@ export async function fetchPage(
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
-      return await response.text();
+      const text = await response.text();
+
+      // Some sites return 200 but with a rate-limit error page
+      if (
+        text.includes("Please reduce your request rate") ||
+        text.includes("Too Many Requests") ||
+        text.length < 500
+      ) {
+        throw new Error(`Rate limited (body): ${text.slice(0, 80)}`);
+      }
+
+      return text;
     } catch (error) {
       clearTimeout(timer);
       lastError = error instanceof Error ? error : new Error(String(error));
 
-      // Don't retry on abort (timeout) for the last attempt
       if (attempt < maxRetries - 1) {
-        const delay =
-          FETCHER.RETRY_BASE_DELAY * Math.pow(2, attempt);
+        // Longer backoff when rate-limited
+        const isRateLimit = lastError.message.includes("rate") || lastError.message.includes("429");
+        const delay = isRateLimit
+          ? FETCHER.RETRY_BASE_DELAY * Math.pow(4, attempt) // 500ms, 2s, 8s
+          : FETCHER.RETRY_BASE_DELAY * Math.pow(2, attempt);
         await Bun.sleep(delay);
       }
     }

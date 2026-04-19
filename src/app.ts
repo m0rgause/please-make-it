@@ -9,6 +9,7 @@ import { Elysia } from "elysia";
 import { plugins } from "./core/plugins";
 import { comicModule } from "./modules/comic";
 import { pustakaModule } from "./modules/pustaka";
+import { ingestionModule } from "./modules/ingestion";
 import { chapterModule } from "./modules/chapter";
 import { API_PREFIX } from "./config/app.config";
 import { ok } from "./core/response";
@@ -28,6 +29,9 @@ export const app = new Elysia()
    * API routes — all prefixed with /api
    */
   .group(API_PREFIX, (app) =>
-    app.use(comicModule).use(pustakaModule).use(chapterModule)
+    app
+      .use(comicModule)
+      .use(pustakaModule)
+      .use(ingestionModule)
+      .use(chapterModule)
   );
-

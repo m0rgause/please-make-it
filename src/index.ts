@@ -2,6 +2,7 @@
  * Application entry point.
  *
  * Bootstraps the Elysia app and starts listening.
+ * Schema is managed separately via `bun run db:push`.
  */
 
 import { app } from "./app";

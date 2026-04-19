@@ -44,6 +44,30 @@ export const env = {
   /** Target comic site to scrape */
   TARGET_URL: requireEnv("TARGET_URL"),
 
+  /** PostgreSQL connection string */
+  DATABASE_URL: requireEnv("DATABASE_URL"),
+
+  /** Redis connection URL (queue backend) */
+  REDIS_URL: optionalEnv("REDIS_URL", "redis://127.0.0.1:6379"),
+
+  /** TG-S3 / S3-compatible storage endpoint URL */
+  STORAGE_ENDPOINT: requireEnv("STORAGE_ENDPOINT"),
+
+  /** S3 bucket name */
+  STORAGE_BUCKET: requireEnv("STORAGE_BUCKET"),
+
+  /** S3 access key */
+  STORAGE_ACCESS_KEY: requireEnv("STORAGE_ACCESS_KEY"),
+
+  /** S3 secret key */
+  STORAGE_SECRET_KEY: requireEnv("STORAGE_SECRET_KEY"),
+
+  /** Base URL for public image access (e.g. CDN or R2 public URL) */
+  STORAGE_PUBLIC_URL: requireEnv("STORAGE_PUBLIC_URL"),
+
+  /** Secret key for /ingest/* endpoints */
+  INGEST_API_KEY: requireEnv("INGEST_API_KEY"),
+
   /** Pino log level */
   LOG_LEVEL: optionalEnv("LOG_LEVEL", "debug"),
 

@@ -50,3 +50,18 @@ export const PAGINATION = {
 
 /** API path prefix */
 export const API_PREFIX = "/api" as const;
+
+/** S3-compatible storage configuration */
+export const STORAGE = {
+  /** Key prefix for chapter image objects */
+  CHAPTER_KEY_PREFIX: "chapters",
+} as const;
+
+/** PostgreSQL configuration */
+export const DATABASE = {
+  /** Max connection pool size */
+  MAX_CONNECTIONS: 10,
+
+  /** Query timeout in milliseconds */
+  QUERY_TIMEOUT: 10_000,
+} as const;

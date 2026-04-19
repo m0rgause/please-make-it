@@ -60,10 +60,10 @@ export function parseChapterDetail(html: string, slug: string): ChapterDetail {
       const chapterMatch = str.match(/chapter\s*:\s*"([^"]+)"/);
       const linkSeriesMatch = str.match(/link_series\s*:\s*"([^"]+)"/);
 
-      series = seriesMatch ? seriesMatch[1] : "";
-      chapter = chapterMatch ? chapterMatch[1] : "";
+      series = seriesMatch ? (seriesMatch[1] ?? "") : "";
+      chapter = chapterMatch ? (chapterMatch[1] ?? "") : "";
       comicUrl = linkSeriesMatch
-        ? linkSeriesMatch[1].replace(/\\\//g, "/")
+        ? (linkSeriesMatch[1] ?? "").replace(/\\\//g, "/")
         : "";
     } catch (e) {
       // Ignore

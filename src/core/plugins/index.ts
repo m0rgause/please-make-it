@@ -47,6 +47,7 @@ export const plugins = new Elysia({ name: "plugins" })
       duration: env.RATE_LIMIT_WINDOW,
       max: env.RATE_LIMIT_MAX,
       scoping: "global",
+      skip: (req) => req.url.includes("/ingest/"),
     })
   )
 
